@@ -1,46 +1,83 @@
 ﻿using static System.Runtime.InteropServices.JavaScript.JSType;
 using String = System.String;
 
-void matriz()
+try
 {
-    String[] nombres = new string[]
+    void matriz()
     {
-        "Anderson", "Brandon", "Yeimi", "Fatima", "Vivian"
-    };
+        int cantidad;
+        Console.Write("Buen día. Ingrese la cantidad de nombres que quiere ingresar junto con su nota: ");
+        cantidad = Convert.ToInt32(Console.ReadLine());
 
-    foreach (String n in nombres)
-    {
-        Console.WriteLine("Nombre = " +n);
-    }
-
-    int[] notas = new int[]
-    {
-        50, 90, 85, 73, 95
-    };
-
-    int promedio = 0;
-    foreach (int n in notas)
-    {
-        promedio= promedio + n;
-    }
-
-    promedio = promedio / notas.Length;
-    Console.WriteLine("El promedio es igual a " +promedio);
-
-    int mayor = 0;
-    int d = 0;
-    int pos = -1;
-    foreach (int n in notas)
-    {
-        
-        if (n > mayor)
+        if (cantidad <= 0)
         {
-            mayor = n;
-            pos = d;
+            Console.WriteLine("Bien, no hay datos que ingresar entonces.");
         }
-        d++;
-    }
-    Console.WriteLine("$\nLa nota mayor pertenece a: " + nombres[pos] + ", la cual es de: " + mayor);
-}
+        else
+        {
+            String[] nombres = new string[cantidad];
+            int[] notas = new int[cantidad];
 
-matriz();
+            for (int i = 0; i < cantidad; i++)
+            {
+                Console.Write("\nIngresa el nombre: ");
+                nombres[i] = Console.ReadLine();
+                Console.Write("Ingresa la nota de " + nombres[i] + ": ");
+                notas[i] = Convert.ToInt32(Console.ReadLine());
+            }
+
+            int j = 0;
+
+            foreach (String n in nombres)
+            {
+                Console.Write("\nNombre = " + n);
+                Console.WriteLine(" | Nota = " + notas[j]);
+                j++;
+            }
+
+            int promedio = 0;
+            foreach (int n in notas)
+            {
+                promedio = promedio + n;
+            }
+
+            promedio = promedio / notas.Length;
+            Console.WriteLine("\nEl promedio es igual a " + promedio);
+
+            int mayor = 0, menor = 101;
+            int d = 0, d2 = 0;
+            int pos = -1, pos2 = -1;
+            foreach (int n in notas)
+            {
+
+                if (n > mayor)
+                {
+                    mayor = n;
+                    pos = d;
+                }
+                d++;
+            }
+
+            foreach (int n in notas)
+            {
+
+                if (n < menor)
+                {
+                    menor = n;
+                    pos2 = d2;
+                }
+                d2++;
+            }
+            Console.WriteLine("La nota mayor pertenece a: " + nombres[pos] + ", la cual es de: " + mayor);
+            Console.WriteLine("La nota menor pertenece a: " + nombres[pos2] + ", la cual es de: " + menor);
+        }
+    }
+
+    matriz();
+
+}
+catch (Exception ex)
+{
+    Console.WriteLine("\nUps, prueba con otro número.");
+    Console.Write("La excepción es: " + ex.Message);
+}
