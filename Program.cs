@@ -38,15 +38,16 @@ try
             int promedio = 0;
             foreach (int n in notas)
             {
-                promedio = promedio + n;
+                promedio += n;
             }
 
-            promedio = promedio / notas.Length;
+            promedio /= notas.Length;
             Console.WriteLine("\nEl promedio es igual a " + promedio);
 
             int mayor = 0, menor = 101;
             int d = 0, d2 = 0;
             int pos = -1, pos2 = -1;
+
             foreach (int n in notas)
             {
 
